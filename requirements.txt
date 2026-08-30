@@ -7,3 +7,5 @@ ipykernel==7.3.0
 seaborn==0.13.2
 tensorflow_hub==0.16.1
 nltk==3.10.0
+torch==2.13.0
+datasets>=4.3.0
