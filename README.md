@@ -2,7 +2,7 @@
 
 A hands-on collection of **Deep Learning and Natural Language Processing (NLP) projects** implemented with Python.
 
-This repository explores the application of Deep Learning to **text and natural language data**, starting from fundamental text classification tasks and progressing toward more advanced NLP applications such as **Spam Detection, Hate Speech Detection, Sentiment Analysis, and Next Sentence Prediction using BERT**.
+This repository explores the application of Deep Learning to **text and natural language data**, starting from fundamental text classification tasks and progressing toward more advanced NLP applications such as **Spam Detection, Hate Speech Detection, Sentiment Analysis, Next Sentence Prediction using BERT, and Fine-tuned BERT Sentiment Analysis with Keras Hub**.
 
 The projects are implemented as Jupyter Notebooks and combine theoretical concepts with practical implementations and experiments using modern Deep Learning frameworks.
 
@@ -11,11 +11,11 @@ The projects are implemented as Jupyter Notebooks and combine theoretical concep
 ## 📚 Contents
 
 * [Projects](#-projects)
-
-  * [SMS Spam Detection](#1-sms-spam-detection)
-  * [Hate Speech Detection](#2-hate-speech-detection)
-  * [Sentiment Analysis with RNN](#3-sentiment-analysis-with-rnn)
-  * [Next Sentence Prediction using BERT](#4-next-sentence-prediction-using-bert)
+* [SMS Spam Detection](#1-sms-spam-detection)
+* [Hate Speech Detection](#2-hate-speech-detection)
+* [Sentiment Analysis with RNN](#3-sentiment-analysis-with-rnn)
+* [Next Sentence Prediction using BERT](#4-next-sentence-prediction-using-bert)
+* [Sentiment Analysis with BERT (Keras Hub)](#5-sentiment-analysis-with-bert-keras-hub)
 * [NLP Tasks Covered](#-nlp-tasks-covered)
 * [Repository Structure](#-repository-structure)
 * [Datasets](#-datasets)
@@ -58,19 +58,19 @@ The project demonstrates how raw text can be transformed into numerical represen
 
 ```text
 Raw SMS
-   ↓
+↓
 Text Preprocessing
-   ↓
+↓
 Tokenization
-   ↓
+↓
 Text Vectorization
-   ↓
+↓
 Word Embedding
-   ↓
+↓
 Neural Network
-   ↓
+↓
 Binary Classification
-   ↓
+↓
 Spam / Ham
 ```
 
@@ -78,7 +78,7 @@ This project provides a simple introduction to applying Deep Learning techniques
 
 ---
 
-# 2. Hate Speech Detection
+## 2. Hate Speech Detection
 
 **Notebook:** `Hate_Speech_Detection.ipynb`
 
@@ -86,7 +86,7 @@ A Natural Language Processing project focused on detecting **hate speech in text
 
 The model learns linguistic patterns from labeled text and predicts whether a given text belongs to the target hate-speech category.
 
-## Main Concepts
+### Main Concepts
 
 * NLP
 * Text preprocessing
@@ -103,19 +103,19 @@ The model learns linguistic patterns from labeled text and predicts whether a gi
 
 ```text
 Input Text
-     ↓
+↓
 Text Preprocessing
-     ↓
+↓
 Tokenization
-     ↓
+↓
 Vectorization
-     ↓
+↓
 Embedding
-     ↓
+↓
 Deep Learning Model
-     ↓
+↓
 Classification
-     ↓
+↓
 Predicted Category
 ```
 
@@ -123,7 +123,7 @@ This project demonstrates how Deep Learning can be applied to automatically anal
 
 ---
 
-# 3. Sentiment Analysis with RNN
+## 3. Sentiment Analysis with RNN
 
 **Notebook:** `Sentiment_Analysis.ipynb`
 
@@ -131,7 +131,7 @@ A sentiment analysis project that uses **Recurrent Neural Networks (RNNs)** to c
 
 RNN-based architectures are designed to process sequential data and are particularly useful for understanding the order and context of words within a sentence.
 
-## Main Concepts
+### Main Concepts
 
 * Natural Language Processing
 * Sequential data
@@ -148,19 +148,19 @@ RNN-based architectures are designed to process sequential data and are particul
 
 ```text
 Input Text
-     ↓
+↓
 Text Preprocessing
-     ↓
+↓
 Tokenization
-     ↓
+↓
 Text Vectorization
-     ↓
+↓
 Embedding
-     ↓
+↓
 RNN
-     ↓
+↓
 Dense Layer
-     ↓
+↓
 Sentiment Prediction
 ```
 
@@ -168,7 +168,7 @@ The project demonstrates how RNNs can learn sequential patterns in natural langu
 
 ---
 
-# 4. Next Sentence Prediction using BERT
+## 4. Next Sentence Prediction using BERT
 
 **Notebook:** `Next_Sentence_Prediction.ipynb`
 
@@ -178,7 +178,7 @@ Unlike traditional RNN-based approaches, BERT is based on the **Transformer arch
 
 Next Sentence Prediction is a pretraining task originally introduced with BERT to determine whether one sentence logically follows another.
 
-## Main Concepts
+### Main Concepts
 
 * Transformers
 * BERT
@@ -196,21 +196,21 @@ Next Sentence Prediction is a pretraining task originally introduced with BERT t
 
 ```text
 Sentence A
-     +
++
 Sentence B
-     ↓
+↓
 BERT Tokenizer
-     ↓
+↓
 Token IDs
-     ↓
+↓
 BERT
-     ↓
+↓
 Transformer Encoder
-     ↓
+↓
 Contextual Representations
-     ↓
+↓
 Classification Layer
-     ↓
+↓
 Next Sentence Prediction
 ```
 
@@ -224,20 +224,81 @@ It allows the model to capture contextual relationships between words using **Se
 
 ---
 
+## 5. Sentiment Analysis with BERT (Keras Hub)
+
+**Notebook:** `Sentiment_Analysis_BERT_KerasHub.ipynb`
+
+A complete end-to-end **Sentiment Analysis** project using a fine-tuned **BERT** model with **Keras Hub**.
+
+This project works on the classic **IMDB Movie Reviews** dataset and demonstrates how to fine-tune a pretrained BERT model for binary sentiment classification (Positive / Negative).
+
+### Main Concepts
+
+* Transformers
+* BERT (Bidirectional Encoder Representations from Transformers)
+* Keras Hub
+* Fine-tuning pretrained language models
+* Text preprocessing & cleaning
+* WordCloud visualization
+* Transfer Learning
+* Binary text classification
+* Model saving & loading
+* End-to-end NLP pipeline
+
+### General Pipeline
+
+```text
+IMDB Movie Reviews
+↓
+Text Cleaning (HTML removal, special characters, ...)
+↓
+Exploratory Analysis (WordCloud)
+↓
+Train / Validation / Test Split
+↓
+BERT Preprocessor (Keras Hub)
+↓
+BertTextClassifier (Fine-tuning)
+↓
+Training (Adam optimizer)
+↓
+Evaluation + Classification Report
+↓
+Save / Load Model
+↓
+Sentiment Prediction Function
+```
+
+### Key Features
+
+* Uses `keras_hub.models.BertTextClassifier` with the `bert_base_en_uncased` preset
+* Automatic preprocessing with the built-in BERT preprocessor
+* Text cleaning with BeautifulSoup + regular expressions
+* Positive & Negative WordClouds
+* Proper train / validation / test split
+* Model saving and reloading
+* Ready-to-use `Get_sentiment()` function for new reviews
+
+This project shows a modern and practical way of applying **Transfer Learning** with BERT for real-world sentiment analysis tasks.
+
+---
+
 # 🧠 NLP Tasks Covered
 
 The repository currently covers several important Natural Language Processing tasks.
 
-| Task                         | Status      | Project                  | Main Approach      |
-| ---------------------------- | ----------- | ------------------------ | ------------------ |
-| Text Classification          | ✅ Completed | SMS Spam Detection       | Neural Network     |
-| Spam Detection               | ✅ Completed | SMS Spam Detection       | TensorFlow / Keras |
-| Hate Speech Detection        | ✅ Completed | Hate Speech Detection    | Deep Learning      |
-| Sentiment Analysis           | ✅ Completed | Sentiment Analysis       | RNN                |
-| Sequence Modeling            | ✅ Completed | Sentiment Analysis       | RNN                |
-| Sentence Pair Classification | ✅ Completed | Next Sentence Prediction | BERT               |
-| Transformer-based NLP        | ✅ Completed | Next Sentence Prediction | BERT               |
-| Pretrained Language Models   | ✅ Completed | Next Sentence Prediction | BERT               |
+| Task                         | Status      | Project                              | Main Approach          |
+|------------------------------|-------------|--------------------------------------|------------------------|
+| Text Classification          | ✅ Completed | SMS Spam Detection                   | Neural Network         |
+| Spam Detection               | ✅ Completed | SMS Spam Detection                   | TensorFlow / Keras     |
+| Hate Speech Detection        | ✅ Completed | Hate Speech Detection                | Deep Learning          |
+| Sentiment Analysis           | ✅ Completed | Sentiment Analysis (RNN)             | RNN                    |
+| Sequence Modeling            | ✅ Completed | Sentiment Analysis (RNN)             | RNN                    |
+| Sentence Pair Classification | ✅ Completed | Next Sentence Prediction             | BERT                   |
+| Transformer-based NLP        | ✅ Completed | Next Sentence Prediction             | BERT                   |
+| Pretrained Language Models   | ✅ Completed | Next Sentence Prediction             | BERT                   |
+| Fine-tuned BERT Sentiment    | ✅ Completed | Sentiment Analysis with BERT         | Keras Hub + BERT       |
+| Transfer Learning            | ✅ Completed | Sentiment Analysis with BERT         | Fine-tuning            |
 
 ---
 
@@ -252,6 +313,7 @@ Deep-Learning-in-NLP/
 ├── Next_Sentence_Prediction.ipynb
 ├── Sentiment_Analysis.ipynb
 ├── SMS_Spam_Detection.ipynb
+├── Sentiment_Analysis_BERT_KerasHub.ipynb
 │
 ├── requirements.txt
 ├── README.md
@@ -265,28 +327,22 @@ Deep-Learning-in-NLP/
 Different datasets are used depending on the NLP task.
 
 ## SMS Spam Dataset
-
-Used for the SMS Spam Detection project.
-
-The dataset contains text messages labeled according to whether they are **spam or legitimate messages**.
+Used for the SMS Spam Detection project.  
+Contains text messages labeled as **spam** or **ham**.
 
 ### Hate Speech Dataset
+Used for the Hate Speech Detection project.  
+Contains textual samples labeled according to their category.
 
-Used for the Hate Speech Detection project.
-
-The dataset contains textual samples labeled according to their corresponding category.
-
-### Sentiment Dataset
-
-Used for the Sentiment Analysis project.
-
-The dataset contains text samples with sentiment labels that allow the model to learn how linguistic patterns correspond to different sentiment categories.
+### Sentiment Dataset (RNN)
+Used for the RNN-based Sentiment Analysis project.
 
 ### Sentence Pair Dataset
-
 Used for the Next Sentence Prediction project.
 
-The dataset contains pairs of sentences that can be used to train or evaluate whether the second sentence follows the first sentence.
+### IMDB Movie Reviews Dataset
+Used for the **Sentiment Analysis with BERT (Keras Hub)** project.  
+A large dataset of movie reviews labeled as **positive** or **negative**.
 
 ---
 
@@ -295,36 +351,35 @@ The dataset contains pairs of sentences that can be used to train or evaluate wh
 The projects are primarily implemented using Python and popular Machine Learning and NLP libraries.
 
 ## Programming Language
-
 * Python
 
 ### Deep Learning
-
 * TensorFlow
 * Keras
+* Keras Hub
 * PyTorch
 
 ### NLP / Transformers
-
 * Hugging Face Transformers
 * BERT
+* Keras Hub BERT models
 * Tokenizers
 
 ### Machine Learning
-
 * Scikit-learn
 
 ### Data Processing
-
 * NumPy
 * Pandas
+* BeautifulSoup
+* Regular Expressions
 
 ### Visualization
-
 * Matplotlib
+* Plotly
+* WordCloud
 
 ### Development Environment
-
 * Jupyter Notebook
 
 ---
@@ -346,14 +401,12 @@ python3 -m venv myvenv
 
 Activate the environment.
 
-## Linux / macOS
-
+**Linux / macOS**
 ```bash
 source myvenv/bin/activate
 ```
 
-### Windows
-
+**Windows**
 ```bash
 myvenv\Scripts\activate
 ```
@@ -385,7 +438,7 @@ Each project is implemented as an individual Jupyter Notebook.
 For example:
 
 ```text
-SMS_Spam_Detection.ipynb
+Sentiment_Analysis_BERT_KerasHub.ipynb
 ```
 
 can be opened and executed step-by-step.
@@ -394,29 +447,28 @@ The general NLP workflow used throughout the repository is:
 
 ```text
 Raw Text
-   ↓
+↓
 Text Cleaning
-   ↓
+↓
 Tokenization
-   ↓
+↓
 Vocabulary / Token IDs
-   ↓
+↓
 Text Vectorization
-   ↓
+↓
 Embedding / Contextual Representation
-   ↓
+↓
 Deep Learning Model
-   ↓
+↓
 Training
-   ↓
+↓
 Evaluation
-   ↓
+↓
 Prediction
 ```
 
-Depending on the project, some stages may be different.
-
-For example, Transformer-based models such as BERT use specialized tokenization and contextual representations instead of the traditional Embedding → RNN pipeline.
+Depending on the project, some stages may be different.  
+For Transformer-based models such as BERT, specialized tokenization and contextual representations are used instead of the traditional Embedding → RNN pipeline.
 
 ---
 
@@ -426,79 +478,52 @@ The projects are organized to provide a gradual progression from fundamental NLP
 
 ```text
 Text Data
-    ↓
+↓
 Text Preprocessing
-    ↓
+↓
 Tokenization
-    ↓
+↓
 Text Vectorization
-    ↓
+↓
 Word Embeddings
-    ↓
+↓
 Text Classification
-    ↓
+↓
 Sequence Modeling
-    ↓
+↓
 RNNs
-    ↓
+↓
 Sentiment Analysis
-    ↓
+↓
 Attention Mechanism
-    ↓
+↓
 Transformers
-    ↓
+↓
 BERT
-    ↓
+↓
+Fine-tuning BERT
+↓
 Modern NLP
 ```
 
 ## Recommended Order
 
-### Step 1 — Text Classification Fundamentals
+**Step 1 — Text Classification Fundamentals**  
+Start with: `SMS_Spam_Detection.ipynb`
 
-Start with:
+**Step 2 — More Complex Text Classification**  
+Continue with: `Hate_Speech_Detection.ipynb`
 
-```text
-SMS_Spam_Detection.ipynb
-```
+**Step 3 — Sequential NLP**  
+Then study: `Sentiment_Analysis.ipynb`
 
-This project introduces the basic workflow of converting raw text into numerical representations and training a Deep Learning model.
+**Step 4 — Transformers and BERT (NSP)**  
+Explore: `Next_Sentence_Prediction.ipynb`
 
----
+**Step 5 — Fine-tuning BERT for Sentiment Analysis**  
+Finally: `Sentiment_Analysis_BERT_KerasHub.ipynb`
 
-#### Step 2 — More Complex Text Classification
-
-Continue with:
-
-```text
-Hate_Speech_Detection.ipynb
-```
-
-This project applies similar NLP techniques to a more challenging text classification problem.
-
----
-
-#### Step 3 — Sequential NLP
-
-Then study:
-
-```text
-Sentiment_Analysis.ipynb
-```
-
-This introduces **Recurrent Neural Networks** and sequence modeling for natural language.
-
----
-
-#### Step 4 — Transformers and BERT
-
-Finally explore:
-
-```text
-Next_Sentence_Prediction.ipynb
-```
-
-This introduces the **Transformer architecture, Self-Attention, BERT, and pretrained language models**.
+This last project shows how to take a pretrained BERT model and fine-tune it on a real-world sentiment analysis task using Keras Hub.
 
 ---
 
@@ -508,27 +533,30 @@ The main goal of this repository is to develop practical knowledge of **Deep Lea
 
 By working through these projects, you can learn how to:
 
-* Process and clean textual data.
-* Perform text preprocessing.
-* Tokenize natural language.
-* Build vocabularies.
-* Convert text into numerical representations.
-* Use text vectorization.
-* Understand word embeddings.
-* Build Deep Learning models for text classification.
-* Perform binary and multi-class text classification.
-* Detect spam messages.
-* Detect hate speech.
-* Perform sentiment analysis.
-* Understand sequential data.
-* Build and train RNN-based models.
-* Understand the limitations of traditional sequential models.
-* Understand Attention Mechanisms.
-* Understand Transformer architectures.
-* Work with BERT.
-* Use pretrained language models.
-* Perform sentence pair classification.
-* Build end-to-end NLP pipelines.
+* Process and clean textual data
+* Perform text preprocessing
+* Tokenize natural language
+* Build vocabularies
+* Convert text into numerical representations
+* Use text vectorization
+* Understand word embeddings
+* Build Deep Learning models for text classification
+* Perform binary and multi-class text classification
+* Detect spam messages
+* Detect hate speech
+* Perform sentiment analysis
+* Understand sequential data
+* Build and train RNN-based models
+* Understand the limitations of traditional sequential models
+* Understand Attention Mechanisms
+* Understand Transformer architectures
+* Work with BERT
+* Use pretrained language models
+* Perform sentence pair classification
+* Fine-tune BERT for downstream tasks
+* Use Keras Hub for modern Transformer models
+* Build end-to-end NLP pipelines
+* Save, load and deploy trained models
 
 ---
 
@@ -550,7 +578,7 @@ Potential future projects include:
 * [ ] Text Summarization
 * [ ] Text Generation
 * [ ] Transformer from Scratch
-* [ ] BERT Fine-Tuning
+* [ ] BERT Fine-Tuning (more tasks)
 * [ ] GPT-based Text Generation
 * [ ] Retrieval-Augmented Generation (RAG)
 * [ ] Large Language Model Applications
@@ -596,25 +624,27 @@ This repository follows a practical progression from fundamental NLP tasks to mo
 
 ```text
 Text Classification
-        ↓
+↓
 Text Preprocessing
-        ↓
+↓
 Tokenization & Vectorization
-        ↓
+↓
 Word Embeddings
-        ↓
+↓
 Deep Learning
-        ↓
+↓
 RNNs
-        ↓
+↓
 Sentiment Analysis
-        ↓
+↓
 Attention
-        ↓
+↓
 Transformers
-        ↓
+↓
 BERT
-        ↓
+↓
+Fine-tuned BERT (Keras Hub)
+↓
 Modern NLP
 ```
 
