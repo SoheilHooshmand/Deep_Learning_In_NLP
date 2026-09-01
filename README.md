@@ -2,7 +2,7 @@
 
 A hands-on collection of **Deep Learning and Natural Language Processing (NLP) projects** implemented with Python.
 
-This repository explores the application of Deep Learning to **text and natural language data**, starting from fundamental text classification tasks and progressing toward more advanced NLP applications such as **Spam Detection, Hate Speech Detection, Sentiment Analysis, Next Sentence Prediction using BERT, and Fine-tuned BERT Sentiment Analysis with Keras Hub**.
+This repository explores the application of Deep Learning to **text and natural language data**, starting from fundamental text classification tasks and progressing toward more advanced NLP applications such as **Spam Detection, Hate Speech Detection, Sentiment Analysis, Next Sentence Prediction using BERT, Fine-tuned BERT Sentiment Analysis with Keras Hub, and Machine Translation with Transformers**.
 
 The projects are implemented as Jupyter Notebooks and combine theoretical concepts with practical implementations and experiments using modern Deep Learning frameworks.
 
@@ -16,6 +16,7 @@ The projects are implemented as Jupyter Notebooks and combine theoretical concep
 * [Sentiment Analysis with RNN](#3-sentiment-analysis-with-rnn)
 * [Next Sentence Prediction using BERT](#4-next-sentence-prediction-using-bert)
 * [Sentiment Analysis with BERT (Keras Hub)](#5-sentiment-analysis-with-bert-keras-hub)
+* [Machine Translation with Transformer](#6-machine-translation-with-transformer)
 * [NLP Tasks Covered](#-nlp-tasks-covered)
 * [Repository Structure](#-repository-structure)
 * [Datasets](#-datasets)
@@ -283,22 +284,82 @@ This project shows a modern and practical way of applying **Transfer Learning** 
 
 ---
 
+## 6. Machine Translation with Transformer
+
+**Notebook:** `Machine_Translation_with_Transformer.ipynb`
+
+A complete **English → Hindi Machine Translation** project based on a pretrained **Seq2Seq Transformer** model (`Helsinki-NLP/opus-mt-en-hi`).
+
+The project demonstrates the full pipeline of loading a parallel corpus, preprocessing, partial fine-tuning (layer freezing), evaluation with **SacreBLEU**, and deploying an interactive translation interface using **Gradio**.
+
+### Main Concepts
+
+* Sequence-to-Sequence (Seq2Seq) Models
+* Transformer Architecture (Encoder-Decoder)
+* Machine Translation
+* Hugging Face Transformers
+* MarianMT / OPUS-MT models
+* Tokenization for translation
+* Fine-tuning pretrained translation models
+* Partial Fine-tuning (Layer Freezing)
+* Data Collator for Seq2Seq
+* SacreBLEU evaluation metric
+* Gradient Checkpointing & Mixed Precision (fp16)
+* Gradio deployment
+
+### General Pipeline
+
+```text
+IITB English-Hindi Dataset
+↓
+Load Pretrained Model (opus-mt-en-hi)
+↓
+Tokenization (Source & Target)
+↓
+Partial Fine-tuning (Freeze lower layers)
+↓
+Seq2Seq Training (Adafactor + fp16)
+↓
+Evaluation with SacreBLEU
+↓
+Interactive Translation Interface (Gradio)
+```
+
+### Key Features
+
+* Uses the parallel corpus `cfilt/iitb-english-hindi`
+* Loads the strong pretrained model `Helsinki-NLP/opus-mt-en-hi`
+* Implements **layer freezing** (keeps only the top layers trainable)
+* Uses `DataCollatorForSeq2Seq` for proper padding
+* Evaluates translation quality with **SacreBLEU**
+* Trains with mixed precision (`fp16`) and gradient checkpointing for efficiency
+* Deploys a ready-to-use Gradio web interface for live translation
+
+This project shows a practical and production-oriented approach to fine-tuning modern Transformer-based Machine Translation systems.
+
+---
+
 # 🧠 NLP Tasks Covered
 
 The repository currently covers several important Natural Language Processing tasks.
 
-| Task                         | Status      | Project                              | Main Approach          |
-|------------------------------|-------------|--------------------------------------|------------------------|
-| Text Classification          | ✅ Completed | SMS Spam Detection                   | Neural Network         |
-| Spam Detection               | ✅ Completed | SMS Spam Detection                   | TensorFlow / Keras     |
-| Hate Speech Detection        | ✅ Completed | Hate Speech Detection                | Deep Learning          |
-| Sentiment Analysis           | ✅ Completed | Sentiment Analysis (RNN)             | RNN                    |
-| Sequence Modeling            | ✅ Completed | Sentiment Analysis (RNN)             | RNN                    |
-| Sentence Pair Classification | ✅ Completed | Next Sentence Prediction             | BERT                   |
-| Transformer-based NLP        | ✅ Completed | Next Sentence Prediction             | BERT                   |
-| Pretrained Language Models   | ✅ Completed | Next Sentence Prediction             | BERT                   |
-| Fine-tuned BERT Sentiment    | ✅ Completed | Sentiment Analysis with BERT         | Keras Hub + BERT       |
-| Transfer Learning            | ✅ Completed | Sentiment Analysis with BERT         | Fine-tuning            |
+```
+| Task                         | Status      | Project                              | Main Approach              |
+| ---------------------------- | ----------- | ------------------------------------ | -------------------------- |
+| Text Classification          | ✅ Completed | SMS Spam Detection                   | Neural Network             |
+| Spam Detection               | ✅ Completed | SMS Spam Detection                   | TensorFlow / Keras         |
+| Hate Speech Detection        | ✅ Completed | Hate Speech Detection                | Deep Learning              |
+| Sentiment Analysis           | ✅ Completed | Sentiment Analysis (RNN)             | RNN                        |
+| Sequence Modeling            | ✅ Completed | Sentiment Analysis (RNN)             | RNN                        |
+| Sentence Pair Classification | ✅ Completed | Next Sentence Prediction             | BERT                       |
+| Transformer-based NLP        | ✅ Completed | Next Sentence Prediction             | BERT                       |
+| Pretrained Language Models   | ✅ Completed | Next Sentence Prediction             | BERT                       |
+| Fine-tuned BERT Sentiment    | ✅ Completed | Sentiment Analysis with BERT         | Keras Hub + BERT           |
+| Transfer Learning            | ✅ Completed | Sentiment Analysis with BERT         | Fine-tuning                |
+| Machine Translation          | ✅ Completed | Machine Translation with Transformer | Seq2Seq Transformer        |
+| Seq2Seq Modeling             | ✅ Completed | Machine Translation with Transformer | Encoder-Decoder            |
+| Partial Fine-tuning          | ✅ Completed | Machine Translation with Transformer | Layer Freezing             |
+```
 
 ---
 
@@ -314,6 +375,7 @@ Deep-Learning-in-NLP/
 ├── Sentiment_Analysis.ipynb
 ├── SMS_Spam_Detection.ipynb
 ├── Sentiment_Analysis_BERT_KerasHub.ipynb
+├── Machine_Translation_with_Transformer.ipynb
 │
 ├── requirements.txt
 ├── README.md
@@ -344,6 +406,10 @@ Used for the Next Sentence Prediction project.
 Used for the **Sentiment Analysis with BERT (Keras Hub)** project.  
 A large dataset of movie reviews labeled as **positive** or **negative**.
 
+### IITB English-Hindi Parallel Corpus
+Used for the **Machine Translation with Transformer** project.  
+A parallel corpus of English–Hindi sentence pairs (`cfilt/iitb-english-hindi`).
+
 ---
 
 # 🛠️ Technologies
@@ -361,7 +427,10 @@ The projects are primarily implemented using Python and popular Machine Learning
 
 ### NLP / Transformers
 * Hugging Face Transformers
+* Hugging Face Datasets
+* Hugging Face Evaluate (SacreBLEU)
 * BERT
+* MarianMT / OPUS-MT
 * Keras Hub BERT models
 * Tokenizers
 
@@ -378,6 +447,9 @@ The projects are primarily implemented using Python and popular Machine Learning
 * Matplotlib
 * Plotly
 * WordCloud
+
+### Deployment
+* Gradio
 
 ### Development Environment
 * Jupyter Notebook
@@ -438,7 +510,7 @@ Each project is implemented as an individual Jupyter Notebook.
 For example:
 
 ```text
-Sentiment_Analysis_BERT_KerasHub.ipynb
+Machine_Translation_with_Transformer.ipynb
 ```
 
 can be opened and executed step-by-step.
@@ -468,7 +540,7 @@ Prediction
 ```
 
 Depending on the project, some stages may be different.  
-For Transformer-based models such as BERT, specialized tokenization and contextual representations are used instead of the traditional Embedding → RNN pipeline.
+For Transformer-based models such as BERT and Seq2Seq translation models, specialized tokenization and contextual representations are used instead of the traditional Embedding → RNN pipeline.
 
 ---
 
@@ -503,6 +575,10 @@ BERT
 ↓
 Fine-tuning BERT
 ↓
+Seq2Seq Transformers
+↓
+Machine Translation
+↓
 Modern NLP
 ```
 
@@ -521,9 +597,12 @@ Then study: `Sentiment_Analysis.ipynb`
 Explore: `Next_Sentence_Prediction.ipynb`
 
 **Step 5 — Fine-tuning BERT for Sentiment Analysis**  
-Finally: `Sentiment_Analysis_BERT_KerasHub.ipynb`
+Continue with: `Sentiment_Analysis_BERT_KerasHub.ipynb`
 
-This last project shows how to take a pretrained BERT model and fine-tune it on a real-world sentiment analysis task using Keras Hub.
+**Step 6 — Machine Translation with Seq2Seq Transformers**  
+Finally: `Machine_Translation_with_Transformer.ipynb`
+
+This last project demonstrates how to fine-tune a full Encoder-Decoder Transformer for a real-world translation task and deploy it with Gradio.
 
 ---
 
@@ -556,6 +635,10 @@ By working through these projects, you can learn how to:
 * Fine-tune BERT for downstream tasks
 * Use Keras Hub for modern Transformer models
 * Build end-to-end NLP pipelines
+* Fine-tune Seq2Seq Transformer models for Machine Translation
+* Implement partial fine-tuning (layer freezing)
+* Evaluate translation quality with SacreBLEU
+* Deploy NLP models with Gradio
 * Save, load and deploy trained models
 
 ---
@@ -569,20 +652,18 @@ Potential future projects include:
 * [ ] LSTM-based Text Classification
 * [ ] GRU-based Text Classification
 * [ ] Bidirectional LSTM
-* [ ] Attention Mechanism
-* [ ] Encoder-Decoder Architecture
-* [ ] Seq2Seq Models
-* [ ] Machine Translation
+* [ ] Attention Mechanism from Scratch
+* [ ] Encoder-Decoder from Scratch
 * [ ] Named Entity Recognition (NER)
 * [ ] Question Answering
 * [ ] Text Summarization
 * [ ] Text Generation
 * [ ] Transformer from Scratch
-* [ ] BERT Fine-Tuning (more tasks)
+* [ ] More BERT Fine-Tuning tasks
 * [ ] GPT-based Text Generation
 * [ ] Retrieval-Augmented Generation (RAG)
 * [ ] Large Language Model Applications
-* [ ] NLP Model Deployment
+* [ ] Advanced NLP Model Deployment
 
 ---
 
@@ -645,7 +726,13 @@ BERT
 ↓
 Fine-tuned BERT (Keras Hub)
 ↓
+Seq2Seq Transformers
+↓
+Machine Translation
+↓
 Modern NLP
 ```
 
 The ultimate goal is to build a strong practical foundation for developing **real-world Deep Learning and NLP systems**.
+```
+
