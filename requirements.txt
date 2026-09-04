@@ -20,6 +20,12 @@ sacrebleu==2.6.0
 evaluate==0.4.6
 accelerate==1.14.0
 gradio==6.26.0
+chromadb==1.5.9
+sentence-transformers==6.0.1
+einops==0.8.2
+
+
+
 
 
 
