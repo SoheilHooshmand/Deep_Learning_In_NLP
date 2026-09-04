@@ -2,7 +2,7 @@
 
 A hands-on collection of **Deep Learning and Natural Language Processing (NLP) projects** implemented with Python.
 
-This repository explores the application of Deep Learning to **text and natural language data**, starting from fundamental text classification tasks and progressing toward more advanced NLP applications such as **Spam Detection, Hate Speech Detection, Sentiment Analysis, Next Sentence Prediction using BERT, Fine-tuned BERT Sentiment Analysis with Keras Hub, Fine-tuning BERT for Sentiment Analysis with PyTorch, Machine Translation with Transformers, and Simple Chatbot using Vector Embeddings**.
+This repository explores the application of Deep Learning to **text and natural language data**, starting from fundamental text classification tasks and progressing toward more advanced NLP applications such as **Spam Detection, Hate Speech Detection, Sentiment Analysis, Fake News Detection, Next Sentence Prediction using BERT, Fine-tuned BERT Sentiment Analysis with Keras Hub, Fine-tuning BERT for Sentiment Analysis with PyTorch, Machine Translation with Transformers, and Simple Chatbot using Vector Embeddings**.
 
 The projects are implemented as Jupyter Notebooks and combine theoretical concepts with practical implementations and experiments using modern Deep Learning frameworks.
 
@@ -14,11 +14,12 @@ The projects are implemented as Jupyter Notebooks and combine theoretical concep
 * [SMS Spam Detection](#1-sms-spam-detection)
 * [Hate Speech Detection](#2-hate-speech-detection)
 * [Sentiment Analysis with RNN](#3-sentiment-analysis-with-rnn)
-* [Next Sentence Prediction using BERT](#4-next-sentence-prediction-using-bert)
-* [Sentiment Analysis with BERT (Keras Hub)](#5-sentiment-analysis-with-bert-keras-hub)
-* [Fine-tuning BERT for Sentiment Analysis (PyTorch)](#6-fine-tuning-bert-for-sentiment-analysis-pytorch)
-* [Machine Translation with Transformer](#7-machine-translation-with-transformer)
-* [Simple Chatbot using Vector Embeddings](#8-simple-chatbot-using-vector-embeddings)
+* [Fake News Detection](#4-fake-news-detection)
+* [Next Sentence Prediction using BERT](#5-next-sentence-prediction-using-bert)
+* [Sentiment Analysis with BERT (Keras Hub)](#6-sentiment-analysis-with-bert-keras-hub)
+* [Fine-tuning BERT for Sentiment Analysis (PyTorch)](#7-fine-tuning-bert-for-sentiment-analysis-pytorch)
+* [Machine Translation with Transformer](#8-machine-translation-with-transformer)
+* [Simple Chatbot using Vector Embeddings](#9-simple-chatbot-using-vector-embeddings)
 * [NLP Tasks Covered](#-nlp-tasks-covered)
 * [Repository Structure](#-repository-structure)
 * [Datasets](#-datasets)
@@ -171,7 +172,69 @@ The project demonstrates how RNNs can learn sequential patterns in natural langu
 
 ---
 
-## 4. Next Sentence Prediction using BERT
+## 4. Fake News Detection
+
+**Notebook:** `Fake_News_Detection.ipynb`
+
+A **Fake News Detection** project that classifies news titles as **real or fake** using a hybrid Deep Learning architecture combining **pretrained GloVe embeddings**, **1D Convolutional layers**, and **LSTM**.
+
+The model focuses on news headlines and leverages transfer learning from GloVe word vectors to capture semantic meaning, while CNN extracts local features and LSTM models sequential dependencies.
+
+### Main Concepts
+
+* Natural Language Processing
+* Text classification
+* Tokenization
+* Sequence padding
+* Pretrained Word Embeddings (GloVe)
+* Transfer Learning
+* Convolutional Neural Networks (Conv1D)
+* Long Short-Term Memory (LSTM)
+* Hybrid CNN + LSTM architecture
+* Binary classification
+* TensorFlow / Keras
+* Model evaluation & inference
+
+### General Pipeline
+
+```text
+News Titles (CSV)
+↓
+Label Encoding (Real / Fake → 0 / 1)
+↓
+Tokenization
+↓
+Sequence Padding
+↓
+GloVe Embedding Matrix (50d)
+↓
+Embedding Layer (trainable=False)
+↓
+Dropout
+↓
+Conv1D + MaxPooling1D
+↓
+LSTM
+↓
+Dense (Sigmoid)
+↓
+Real / Fake Prediction
+```
+
+### Key Features
+
+* Uses pretrained **GloVe 6B 50d** embeddings
+* Embedding weights are frozen (transfer learning)
+* Hybrid architecture: Conv1D for local feature extraction + LSTM for sequence modeling
+* Works on news titles (short text)
+* Simple inference function for new headlines
+* Binary classification with sigmoid output
+
+This project demonstrates a practical and effective approach to detecting fake news using classical Deep Learning techniques combined with pretrained word embeddings.
+
+---
+
+## 5. Next Sentence Prediction using BERT
 
 **Notebook:** `Next_Sentence_Prediction.ipynb`
 
@@ -227,7 +290,7 @@ It allows the model to capture contextual relationships between words using **Se
 
 ---
 
-## 5. Sentiment Analysis with BERT (Keras Hub)
+## 6. Sentiment Analysis with BERT (Keras Hub)
 
 **Notebook:** `Sentiment_Analysis_BERT_KerasHub.ipynb`
 
@@ -286,7 +349,7 @@ This project shows a modern and practical way of applying **Transfer Learning** 
 
 ---
 
-## 6. Fine-tuning BERT for Sentiment Analysis (PyTorch)
+## 7. Fine-tuning BERT for Sentiment Analysis (PyTorch)
 
 **Notebook:** `fine-tuning_BERT_model_for_Sentiment_Analysis.ipynb`
 
@@ -347,7 +410,7 @@ This project demonstrates a classic and educational way of performing **Transfer
 
 ---
 
-## 7. Machine Translation with Transformer
+## 8. Machine Translation with Transformer
 
 **Notebook:** `Machine_Translation_with_Transformer.ipynb`
 
@@ -402,7 +465,7 @@ This project shows a practical and production-oriented approach to fine-tuning m
 
 ---
 
-## 8. Simple Chatbot using Vector Embeddings
+## 9. Simple Chatbot using Vector Embeddings
 
 **Notebook:** `Simple_Chatbot_using_Vector_Embeddings.ipynb`
 
@@ -461,29 +524,30 @@ This project serves as an accessible introduction to building memory-augmented c
 
 The repository currently covers several important Natural Language Processing tasks.
 
-```
-| Task                              | Status      | Project                                      | Main Approach                          |
-| --------------------------------- | ----------- | -------------------------------------------- | -------------------------------------- |
-| Text Classification               | ✅ Completed | SMS Spam Detection                           | Neural Network                         |
-| Spam Detection                    | ✅ Completed | SMS Spam Detection                           | TensorFlow / Keras                     |
-| Hate Speech Detection             | ✅ Completed | Hate Speech Detection                        | Deep Learning                          |
-| Sentiment Analysis                | ✅ Completed | Sentiment Analysis (RNN)                     | RNN                                    |
-| Sequence Modeling                 | ✅ Completed | Sentiment Analysis (RNN)                     | RNN                                    |
-| Sentence Pair Classification      | ✅ Completed | Next Sentence Prediction                     | BERT                                   |
-| Transformer-based NLP             | ✅ Completed | Next Sentence Prediction                     | BERT                                   |
-| Pretrained Language Models        | ✅ Completed | Next Sentence Prediction                     | BERT                                   |
-| Fine-tuned BERT Sentiment         | ✅ Completed | Sentiment Analysis with BERT (Keras Hub)     | Keras Hub + BERT                       |
-| Transfer Learning                 | ✅ Completed | Sentiment Analysis with BERT (Keras Hub)     | Fine-tuning                            |
-| Fine-tuning BERT (PyTorch)        | ✅ Completed | Fine-tuning BERT for Sentiment Analysis      | PyTorch + Hugging Face                 |
-| Feature Extraction with BERT      | ✅ Completed | Fine-tuning BERT for Sentiment Analysis      | Frozen BERT + Custom Head              |
-| Machine Translation               | ✅ Completed | Machine Translation with Transformer         | Seq2Seq Transformer                    |
-| Seq2Seq Modeling                  | ✅ Completed | Machine Translation with Transformer         | Encoder-Decoder                        |
-| Partial Fine-tuning               | ✅ Completed | Machine Translation with Transformer         | Layer Freezing                         |
-| Conversational AI / Chatbot       | ✅ Completed | Simple Chatbot using Vector Embeddings       | Small LLM + Memory                     |
-| Retrieval-Augmented Generation    | ✅ Completed | Simple Chatbot using Vector Embeddings       | Embeddings + Vector DB                 |
-| Semantic Search                   | ✅ Completed | Simple Chatbot using Vector Embeddings       | Sentence Transformers + ChromaDB       |
-| Long-term Dialogue Memory         | ✅ Completed | Simple Chatbot using Vector Embeddings       | Persistent Vector Store                |
-```
+| Task                           | Status      | Project                                  | Main Approach                    |
+| ------------------------------ | ----------- | ---------------------------------------- | -------------------------------- |
+| Text Classification            | ✅ Completed | SMS Spam Detection                       | Neural Network                   |
+| Spam Detection                 | ✅ Completed | SMS Spam Detection                       | TensorFlow / Keras               |
+| Hate Speech Detection          | ✅ Completed | Hate Speech Detection                    | Deep Learning                    |
+| Sentiment Analysis             | ✅ Completed | Sentiment Analysis (RNN)                 | RNN                              |
+| Sequence Modeling              | ✅ Completed | Sentiment Analysis (RNN)                 | RNN                              |
+| Fake News Detection            | ✅ Completed | Fake News Detection                      | CNN + LSTM + GloVe               |
+| Hybrid CNN-LSTM                | ✅ Completed | Fake News Detection                      | Conv1D + LSTM                    |
+| Pretrained Word Embeddings     | ✅ Completed | Fake News Detection                      | GloVe 50d                        |
+| Sentence Pair Classification   | ✅ Completed | Next Sentence Prediction                 | BERT                             |
+| Transformer-based NLP          | ✅ Completed | Next Sentence Prediction                 | BERT                             |
+| Pretrained Language Models     | ✅ Completed | Next Sentence Prediction                 | BERT                             |
+| Fine-tuned BERT Sentiment      | ✅ Completed | Sentiment Analysis with BERT (Keras Hub) | Keras Hub + BERT                 |
+| Transfer Learning              | ✅ Completed | Sentiment Analysis with BERT (Keras Hub) | Fine-tuning                      |
+| Fine-tuning BERT (PyTorch)     | ✅ Completed | Fine-tuning BERT for Sentiment Analysis  | PyTorch + Hugging Face           |
+| Feature Extraction with BERT   | ✅ Completed | Fine-tuning BERT for Sentiment Analysis  | Frozen BERT + Custom Head        |
+| Machine Translation            | ✅ Completed | Machine Translation with Transformer     | Seq2Seq Transformer              |
+| Seq2Seq Modeling               | ✅ Completed | Machine Translation with Transformer     | Encoder-Decoder                  |
+| Partial Fine-tuning            | ✅ Completed | Machine Translation with Transformer     | Layer Freezing                   |
+| Conversational AI / Chatbot    | ✅ Completed | Simple Chatbot using Vector Embeddings   | Small LLM + Memory               |
+| Retrieval-Augmented Generation | ✅ Completed | Simple Chatbot using Vector Embeddings   | Embeddings + Vector DB           |
+| Semantic Search                | ✅ Completed | Simple Chatbot using Vector Embeddings   | Sentence Transformers + ChromaDB |
+| Long-term Dialogue Memory      | ✅ Completed | Simple Chatbot using Vector Embeddings   | Persistent Vector Store          |
 
 ---
 
@@ -498,6 +562,7 @@ Deep-Learning-in-NLP/
 ├── Next_Sentence_Prediction.ipynb
 ├── Sentiment_Analysis.ipynb
 ├── SMS_Spam_Detection.ipynb
+├── Fake_News_Detection.ipynb
 ├── Sentiment_Analysis_BERT_KerasHub.ipynb
 ├── fine-tuning_BERT_model_for_Sentiment_Analysis.ipynb
 ├── Machine_Translation_with_Transformer.ipynb
@@ -515,33 +580,37 @@ Deep-Learning-in-NLP/
 Different datasets are used depending on the NLP task.
 
 ## SMS Spam Dataset
-Used for the SMS Spam Detection project.  
+Used for the SMS Spam Detection project.
 Contains text messages labeled as **spam** or **ham**.
 
 ### Hate Speech Dataset
-Used for the Hate Speech Detection project.  
+Used for the Hate Speech Detection project.
 Contains textual samples labeled according to their category.
 
 ### Sentiment Dataset (RNN)
 Used for the RNN-based Sentiment Analysis project.
 
+### Fake News Dataset
+Used for the **Fake News Detection** project.
+Contains news articles with titles and labels (`REAL` / `FAKE`). The model primarily uses the **title** column for classification.
+
 ### Sentence Pair Dataset
 Used for the Next Sentence Prediction project.
 
 ### IMDB Movie Reviews Dataset
-Used for the **Sentiment Analysis with BERT (Keras Hub)** project.  
+Used for the **Sentiment Analysis with BERT (Keras Hub)** project.
 A large dataset of movie reviews labeled as **positive** or **negative**.
 
 ### Sentiment Dataset (PyTorch BERT)
-Used for the **Fine-tuning BERT for Sentiment Analysis (PyTorch)** project.  
+Used for the **Fine-tuning BERT for Sentiment Analysis (PyTorch)** project.
 A labeled sentiment dataset (`sentiment_train.csv`) with sentence and label columns.
 
 ### IITB English-Hindi Parallel Corpus
-Used for the **Machine Translation with Transformer** project.  
+Used for the **Machine Translation with Transformer** project.
 A parallel corpus of English–Hindi sentence pairs (`cfilt/iitb-english-hindi`).
 
 ### Conversation Memory (Self-Generated)
-Used for the **Simple Chatbot using Vector Embeddings** project.  
+Used for the **Simple Chatbot using Vector Embeddings** project.
 The system starts with a few seed memories and continuously stores new user–assistant interactions as vector embeddings in ChromaDB.
 
 ---
@@ -568,6 +637,7 @@ The projects are primarily implemented using Python and popular Machine Learning
 * Keras Hub BERT models
 * Tokenizers (`BertTokenizerFast`)
 * Sentence Transformers
+* GloVe Embeddings
 
 ### Vector Databases & Retrieval
 * ChromaDB
@@ -648,7 +718,7 @@ Each project is implemented as an individual Jupyter Notebook.
 For example:
 
 ```text
-Simple_Chatbot_using_Vector_Embeddings.ipynb
+Fake_News_Detection.ipynb
 ```
 
 can be opened and executed step-by-step.
@@ -677,7 +747,7 @@ Evaluation
 Prediction
 ```
 
-Depending on the project, some stages may be different.  
+Depending on the project, some stages may be different.
 For Transformer-based models such as BERT and Seq2Seq translation models, specialized tokenization and contextual representations are used instead of the traditional Embedding → RNN pipeline.
 
 In the **Simple Chatbot using Vector Embeddings** project, the pipeline becomes:
@@ -721,6 +791,8 @@ RNNs
 ↓
 Sentiment Analysis
 ↓
+Fake News Detection (CNN + LSTM + GloVe)
+↓
 Attention Mechanism
 ↓
 Transformers
@@ -753,19 +825,22 @@ Continue with: `Hate_Speech_Detection.ipynb`
 **Step 3 — Sequential NLP**  
 Then study: `Sentiment_Analysis.ipynb`
 
-**Step 4 — Transformers and BERT (NSP)**  
+**Step 4 — Hybrid CNN + LSTM with Pretrained Embeddings**  
+Continue with: `Fake_News_Detection.ipynb`
+
+**Step 5 — Transformers and BERT (NSP)**  
 Explore: `Next_Sentence_Prediction.ipynb`
 
-**Step 5 — Fine-tuning BERT for Sentiment Analysis (Keras Hub)**  
+**Step 6 — Fine-tuning BERT for Sentiment Analysis (Keras Hub)**  
 Continue with: `Sentiment_Analysis_BERT_KerasHub.ipynb`
 
-**Step 6 — Fine-tuning BERT for Sentiment Analysis (PyTorch)**  
+**Step 7 — Fine-tuning BERT for Sentiment Analysis (PyTorch)**  
 Continue with: `fine-tuning_BERT_model_for_Sentiment_Analysis.ipynb`
 
-**Step 7 — Machine Translation with Seq2Seq Transformers**  
+**Step 8 — Machine Translation with Seq2Seq Transformers**  
 Then: `Machine_Translation_with_Transformer.ipynb`
 
-**Step 8 — Simple Chatbot using Vector Embeddings**  
+**Step 9 — Simple Chatbot using Vector Embeddings**  
 Finally: `Simple_Chatbot_using_Vector_Embeddings.ipynb`
 
 This final project introduces the practical use of embeddings, vector databases, and building a memory-augmented conversational agent.
@@ -785,13 +860,16 @@ By working through these projects, you can learn how to:
 * Convert text into numerical representations
 * Use text vectorization
 * Understand word embeddings
+* Use pretrained word embeddings (GloVe)
 * Build Deep Learning models for text classification
 * Perform binary and multi-class text classification
 * Detect spam messages
 * Detect hate speech
 * Perform sentiment analysis
+* Detect fake news using hybrid CNN + LSTM architectures
 * Understand sequential data
 * Build and train RNN-based models
+* Combine Convolutional and Recurrent layers
 * Understand the limitations of traditional sequential models
 * Understand Attention Mechanisms
 * Understand Transformer architectures
@@ -893,6 +971,8 @@ Deep Learning
 RNNs
 ↓
 Sentiment Analysis
+↓
+Fake News Detection (CNN + LSTM + GloVe)
 ↓
 Attention
 ↓
