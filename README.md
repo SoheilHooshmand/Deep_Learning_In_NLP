@@ -2,7 +2,7 @@
 
 A hands-on collection of **Deep Learning and Natural Language Processing (NLP) projects** implemented with Python.
 
-This repository explores the application of Deep Learning to **text and natural language data**, starting from fundamental text classification tasks and progressing toward more advanced NLP applications such as **Spam Detection, Hate Speech Detection, Sentiment Analysis, Next Sentence Prediction using BERT, Fine-tuned BERT Sentiment Analysis with Keras Hub, Fine-tuning BERT for Sentiment Analysis with PyTorch, and Machine Translation with Transformers**.
+This repository explores the application of Deep Learning to **text and natural language data**, starting from fundamental text classification tasks and progressing toward more advanced NLP applications such as **Spam Detection, Hate Speech Detection, Sentiment Analysis, Next Sentence Prediction using BERT, Fine-tuned BERT Sentiment Analysis with Keras Hub, Fine-tuning BERT for Sentiment Analysis with PyTorch, Machine Translation with Transformers, and Simple Chatbot using Vector Embeddings**.
 
 The projects are implemented as Jupyter Notebooks and combine theoretical concepts with practical implementations and experiments using modern Deep Learning frameworks.
 
@@ -18,6 +18,7 @@ The projects are implemented as Jupyter Notebooks and combine theoretical concep
 * [Sentiment Analysis with BERT (Keras Hub)](#5-sentiment-analysis-with-bert-keras-hub)
 * [Fine-tuning BERT for Sentiment Analysis (PyTorch)](#6-fine-tuning-bert-for-sentiment-analysis-pytorch)
 * [Machine Translation with Transformer](#7-machine-translation-with-transformer)
+* [Simple Chatbot using Vector Embeddings](#8-simple-chatbot-using-vector-embeddings)
 * [NLP Tasks Covered](#-nlp-tasks-covered)
 * [Repository Structure](#-repository-structure)
 * [Datasets](#-datasets)
@@ -401,27 +402,88 @@ This project shows a practical and production-oriented approach to fine-tuning m
 
 ---
 
+## 8. Simple Chatbot using Vector Embeddings
+
+**Notebook:** `Simple_Chatbot_using_Vector_Embeddings.ipynb`
+
+A practical project that builds a **conversational chatbot with long-term memory** using vector embeddings and a persistent vector database.
+
+The system stores conversation history as embeddings in **ChromaDB**, retrieves the most relevant past interactions for each new user message via semantic search, and injects them into the prompt of a small language model (`Qwen2.5-0.5B-Instruct`) to generate context-aware responses.
+
+### Main Concepts
+
+* Conversational AI / Chatbot
+* Vector Embeddings
+* Semantic Search
+* Persistent Vector Database (ChromaDB)
+* Retrieval-Augmented Generation (simple RAG)
+* Sentence Transformers
+* Small Language Models
+* Prompt Engineering with Retrieved Context
+* Multi-turn Dialogue Memory
+* Metadata Filtering
+
+### General Pipeline
+
+```text
+User Message
+↓
+Embed Query (SentenceTransformer - all-MiniLM-L6-v2)
+↓
+Semantic Search in ChromaDB
+↓
+Retrieve Top-k Relevant Memories
+↓
+Build Context (Retrieved Memories + Current Question)
+↓
+Prompt Small LLM (Qwen2.5-0.5B-Instruct)
+↓
+Generate Response
+↓
+Store New Interaction (User + Assistant) back into Memory
+```
+
+### Key Features
+
+* Uses `all-MiniLM-L6-v2` for efficient sentence embeddings
+* Persistent storage with **ChromaDB** (memories survive restarts)
+* Metadata support (`user_id`, `conversation_id`, `role`, timestamps)
+* Automatic storage of both user messages and assistant replies
+* Context construction that includes similarity scores
+* Lightweight LLM suitable for educational and low-resource settings
+* Interactive chat loop + memory inspection tools
+
+This project serves as an accessible introduction to building memory-augmented chatbots and simple RAG systems.
+
+---
+
 # 🧠 NLP Tasks Covered
 
 The repository currently covers several important Natural Language Processing tasks.
 
-| Task                         | Status      | Project                                      | Main Approach              |
-| ---------------------------- | ----------- | -------------------------------------------- | -------------------------- |
-| Text Classification          | ✅ Completed | SMS Spam Detection                           | Neural Network             |
-| Spam Detection               | ✅ Completed | SMS Spam Detection                           | TensorFlow / Keras         |
-| Hate Speech Detection        | ✅ Completed | Hate Speech Detection                        | Deep Learning              |
-| Sentiment Analysis           | ✅ Completed | Sentiment Analysis (RNN)                     | RNN                        |
-| Sequence Modeling            | ✅ Completed | Sentiment Analysis (RNN)                     | RNN                        |
-| Sentence Pair Classification | ✅ Completed | Next Sentence Prediction                     | BERT                       |
-| Transformer-based NLP        | ✅ Completed | Next Sentence Prediction                     | BERT                       |
-| Pretrained Language Models   | ✅ Completed | Next Sentence Prediction                     | BERT                       |
-| Fine-tuned BERT Sentiment    | ✅ Completed | Sentiment Analysis with BERT (Keras Hub)     | Keras Hub + BERT           |
-| Transfer Learning            | ✅ Completed | Sentiment Analysis with BERT (Keras Hub)     | Fine-tuning                |
-| Fine-tuning BERT (PyTorch)   | ✅ Completed | Fine-tuning BERT for Sentiment Analysis      | PyTorch + Hugging Face     |
-| Feature Extraction with BERT | ✅ Completed | Fine-tuning BERT for Sentiment Analysis      | Frozen BERT + Custom Head  |
-| Machine Translation          | ✅ Completed | Machine Translation with Transformer         | Seq2Seq Transformer        |
-| Seq2Seq Modeling             | ✅ Completed | Machine Translation with Transformer         | Encoder-Decoder            |
-| Partial Fine-tuning          | ✅ Completed | Machine Translation with Transformer         | Layer Freezing             |
+```
+| Task                              | Status      | Project                                      | Main Approach                          |
+| --------------------------------- | ----------- | -------------------------------------------- | -------------------------------------- |
+| Text Classification               | ✅ Completed | SMS Spam Detection                           | Neural Network                         |
+| Spam Detection                    | ✅ Completed | SMS Spam Detection                           | TensorFlow / Keras                     |
+| Hate Speech Detection             | ✅ Completed | Hate Speech Detection                        | Deep Learning                          |
+| Sentiment Analysis                | ✅ Completed | Sentiment Analysis (RNN)                     | RNN                                    |
+| Sequence Modeling                 | ✅ Completed | Sentiment Analysis (RNN)                     | RNN                                    |
+| Sentence Pair Classification      | ✅ Completed | Next Sentence Prediction                     | BERT                                   |
+| Transformer-based NLP             | ✅ Completed | Next Sentence Prediction                     | BERT                                   |
+| Pretrained Language Models        | ✅ Completed | Next Sentence Prediction                     | BERT                                   |
+| Fine-tuned BERT Sentiment         | ✅ Completed | Sentiment Analysis with BERT (Keras Hub)     | Keras Hub + BERT                       |
+| Transfer Learning                 | ✅ Completed | Sentiment Analysis with BERT (Keras Hub)     | Fine-tuning                            |
+| Fine-tuning BERT (PyTorch)        | ✅ Completed | Fine-tuning BERT for Sentiment Analysis      | PyTorch + Hugging Face                 |
+| Feature Extraction with BERT      | ✅ Completed | Fine-tuning BERT for Sentiment Analysis      | Frozen BERT + Custom Head              |
+| Machine Translation               | ✅ Completed | Machine Translation with Transformer         | Seq2Seq Transformer                    |
+| Seq2Seq Modeling                  | ✅ Completed | Machine Translation with Transformer         | Encoder-Decoder                        |
+| Partial Fine-tuning               | ✅ Completed | Machine Translation with Transformer         | Layer Freezing                         |
+| Conversational AI / Chatbot       | ✅ Completed | Simple Chatbot using Vector Embeddings       | Small LLM + Memory                     |
+| Retrieval-Augmented Generation    | ✅ Completed | Simple Chatbot using Vector Embeddings       | Embeddings + Vector DB                 |
+| Semantic Search                   | ✅ Completed | Simple Chatbot using Vector Embeddings       | Sentence Transformers + ChromaDB       |
+| Long-term Dialogue Memory         | ✅ Completed | Simple Chatbot using Vector Embeddings       | Persistent Vector Store                |
+```
 
 ---
 
@@ -439,6 +501,7 @@ Deep-Learning-in-NLP/
 ├── Sentiment_Analysis_BERT_KerasHub.ipynb
 ├── fine-tuning_BERT_model_for_Sentiment_Analysis.ipynb
 ├── Machine_Translation_with_Transformer.ipynb
+├── Simple_Chatbot_using_Vector_Embeddings.ipynb
 │
 ├── requirements.txt
 ├── README.md
@@ -452,11 +515,11 @@ Deep-Learning-in-NLP/
 Different datasets are used depending on the NLP task.
 
 ## SMS Spam Dataset
-Used for the SMS Spam Detection project.
+Used for the SMS Spam Detection project.  
 Contains text messages labeled as **spam** or **ham**.
 
 ### Hate Speech Dataset
-Used for the Hate Speech Detection project.
+Used for the Hate Speech Detection project.  
 Contains textual samples labeled according to their category.
 
 ### Sentiment Dataset (RNN)
@@ -466,16 +529,20 @@ Used for the RNN-based Sentiment Analysis project.
 Used for the Next Sentence Prediction project.
 
 ### IMDB Movie Reviews Dataset
-Used for the **Sentiment Analysis with BERT (Keras Hub)** project.
+Used for the **Sentiment Analysis with BERT (Keras Hub)** project.  
 A large dataset of movie reviews labeled as **positive** or **negative**.
 
 ### Sentiment Dataset (PyTorch BERT)
-Used for the **Fine-tuning BERT for Sentiment Analysis (PyTorch)** project.
+Used for the **Fine-tuning BERT for Sentiment Analysis (PyTorch)** project.  
 A labeled sentiment dataset (`sentiment_train.csv`) with sentence and label columns.
 
 ### IITB English-Hindi Parallel Corpus
-Used for the **Machine Translation with Transformer** project.
+Used for the **Machine Translation with Transformer** project.  
 A parallel corpus of English–Hindi sentence pairs (`cfilt/iitb-english-hindi`).
+
+### Conversation Memory (Self-Generated)
+Used for the **Simple Chatbot using Vector Embeddings** project.  
+The system starts with a few seed memories and continuously stores new user–assistant interactions as vector embeddings in ChromaDB.
 
 ---
 
@@ -500,6 +567,10 @@ The projects are primarily implemented using Python and popular Machine Learning
 * MarianMT / OPUS-MT
 * Keras Hub BERT models
 * Tokenizers (`BertTokenizerFast`)
+* Sentence Transformers
+
+### Vector Databases & Retrieval
+* ChromaDB
 
 ### Machine Learning
 * Scikit-learn
@@ -577,7 +648,7 @@ Each project is implemented as an individual Jupyter Notebook.
 For example:
 
 ```text
-fine-tuning_BERT_model_for_Sentiment_Analysis.ipynb
+Simple_Chatbot_using_Vector_Embeddings.ipynb
 ```
 
 can be opened and executed step-by-step.
@@ -606,14 +677,30 @@ Evaluation
 Prediction
 ```
 
-Depending on the project, some stages may be different.
+Depending on the project, some stages may be different.  
 For Transformer-based models such as BERT and Seq2Seq translation models, specialized tokenization and contextual representations are used instead of the traditional Embedding → RNN pipeline.
+
+In the **Simple Chatbot using Vector Embeddings** project, the pipeline becomes:
+
+```text
+User Query
+↓
+Embedding
+↓
+Vector Retrieval (ChromaDB)
+↓
+Context Augmentation
+↓
+LLM Generation
+↓
+Memory Update
+```
 
 ---
 
 # 🗺️ Learning Path
 
-The projects are organized to provide a gradual progression from fundamental NLP concepts toward modern Transformer-based approaches.
+The projects are organized to provide a gradual progression from fundamental NLP concepts toward modern Transformer-based and memory-augmented approaches.
 
 ```text
 Text Data
@@ -648,7 +735,11 @@ Seq2Seq Transformers
 ↓
 Machine Translation
 ↓
-Modern NLP
+Vector Embeddings + Semantic Search
+↓
+Retrieval-Augmented Chatbot
+↓
+Modern NLP Systems
 ```
 
 ## Recommended Order
@@ -672,9 +763,12 @@ Continue with: `Sentiment_Analysis_BERT_KerasHub.ipynb`
 Continue with: `fine-tuning_BERT_model_for_Sentiment_Analysis.ipynb`
 
 **Step 7 — Machine Translation with Seq2Seq Transformers**  
-Finally: `Machine_Translation_with_Transformer.ipynb`
+Then: `Machine_Translation_with_Transformer.ipynb`
 
-This last project demonstrates how to fine-tune a full Encoder-Decoder Transformer for a real-world translation task and deploy it with Gradio.
+**Step 8 — Simple Chatbot using Vector Embeddings**  
+Finally: `Simple_Chatbot_using_Vector_Embeddings.ipynb`
+
+This final project introduces the practical use of embeddings, vector databases, and building a memory-augmented conversational agent.
 
 ---
 
@@ -714,6 +808,11 @@ By working through these projects, you can learn how to:
 * Evaluate translation quality with SacreBLEU
 * Deploy NLP models with Gradio
 * Save, load and deploy trained models
+* Create high-quality sentence embeddings with Sentence Transformers
+* Store and query vectors using ChromaDB
+* Implement a simple Retrieval-Augmented Generation (RAG) pipeline
+* Build a conversational chatbot with persistent long-term memory
+* Manage multi-turn dialogues using metadata filtering
 
 ---
 
@@ -736,9 +835,11 @@ Potential future projects include:
 * [ ] More BERT Fine-Tuning tasks
 * [ ] Full Fine-tuning of BERT (unfreezing all layers)
 * [ ] GPT-based Text Generation
-* [ ] Retrieval-Augmented Generation (RAG)
+* [ ] Advanced Retrieval-Augmented Generation (RAG)
 * [ ] Large Language Model Applications
 * [ ] Advanced NLP Model Deployment
+* [ ] Multi-user Memory Systems
+* [ ] Hybrid Search (Keyword + Semantic)
 
 ---
 
@@ -776,7 +877,7 @@ This repository is part of my ongoing learning and development in:
 
 ## 📌 Summary
 
-This repository follows a practical progression from fundamental NLP tasks to modern Transformer-based language models:
+This repository follows a practical progression from fundamental NLP tasks to modern Transformer-based and memory-augmented systems:
 
 ```text
 Text Classification
@@ -806,6 +907,10 @@ Fine-tuned BERT (PyTorch)
 Seq2Seq Transformers
 ↓
 Machine Translation
+↓
+Vector Embeddings + Semantic Search
+↓
+Simple Chatbot with Persistent Memory
 ↓
 Modern NLP
 ```
